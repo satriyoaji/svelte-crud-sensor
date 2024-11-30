@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+
+<nav class="bg-gray-800 text-white p-4">
+    <a href="/login" class="mr-4">Login</a>
+    <a href="/dashboard">Dashboard</a>
+</nav>
+
+<!-- <script>
+	import { onMount } from 'svelte';
+    // @ts-ignore
+    import { goto } from 'svelte-navigator';
+    onMount(() => {
+      goto('/login');
+    });
+</script> -->
