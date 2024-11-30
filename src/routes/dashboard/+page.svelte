@@ -2,6 +2,12 @@
     import { onMount } from 'svelte';
     import axios from 'axios';
   
+    onMount(() => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = '/login'; // Redirect to login if not authenticated
+      }
+    });
     /**
 	 * @type {any[]}
 	 */
@@ -15,20 +21,20 @@
     let editingSensor = null;
   
     const fetchSensors = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/sensors`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/environment`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
-      sensors = response.data;
+      sensors = response.data.data;
     };
   
     const saveSensor = async () => {
       const payload = { name, type, value };
       if (editingSensor) {
-        await axios.put(`${import.meta.env.VITE_API_URL}/sensors/${editingSensor.id}`, payload, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/environment/${editingSensor.id}`, payload, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
       } else {
-        await axios.post(`${import.meta.env.VITE_API_URL}/sensors`, payload, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/environment`, payload, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
       }
@@ -38,7 +44,7 @@
     };
   
     const deleteSensor = async (/** @type {number} */ id) => {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/sensors/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/environment/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchSensors();

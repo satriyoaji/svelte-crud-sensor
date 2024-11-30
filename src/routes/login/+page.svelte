@@ -1,21 +1,23 @@
 <script>
-    import { useNavigate } from 'svelte-navigator';
+    // import { useNavigate } from 'svelte-navigator';
+    import { goto } from '$app/navigation';
     import axios from 'axios';
   
     let email = '';
     let password = '';
     let error = '';
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
   
     const login = async () => {
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/token`, { email, password });
         if (response.status === 200) {
           localStorage.setItem('token', response.data.token);
+          // navigate('/dashboard');
+          goto('/dashboard')
         } else {
           error = 'Invalid credentials';
         }
-        navigate('/dashboard');
       } catch (err) {
         error = 'Invalid email or password';
       }

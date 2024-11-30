@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Router } from 'svelte-navigator';
+	// import { Router } from 'svelte-navigator';
 	import '../app.css';
 	
 	let { children } = $props();
 </script>
-<Router>
-	<slot />
-</Router>
+<!-- svelte-ignore slot_element_deprecated -->
+<slot />
 <!-- {@render children()} -->
