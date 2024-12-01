@@ -4,8 +4,9 @@ Everything you need to build a Svelte project, powered by [`sv`](https://github.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`).
+Then copy the environment variables `.env.example` to `.env` and adjust your own API Base URL.
+Finally you can start a development server:
 ```bash
 npm run dev
 
